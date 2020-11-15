@@ -28,16 +28,24 @@ function getWorkingHrs(empCheck)
 {
     switch (empCheck) 
     {
-        case IS_PART_TIME:
-            console.log("Employee is working part time");
+        case IS_PART_TIME:            
             return PART_TIME_HOURS;          
-        case IS_FULL_TIME:
-            console.log("employee is working full time");
+        case IS_FULL_TIME:      
             return FULL_TIME_HOURS;
         default:       
             return 0;
     }
 }
-
 let empWage = WAGE_PER_HOUR*getWorkingHrs(empCheck);
-console.log("Employee wage: " + empWage+"\n");
+console.log("Employee wage for the day: " + empWage);
+
+// UC 4 : Calculate total emp wage for a month assuming 20 working days
+const NUM_OF_WORKING_DAYS = 20;
+empHrs=0;
+for(let day=0;day<NUM_OF_WORKING_DAYS;day++)
+{
+    let empCheck = Math.floor(Math.random() * 10) % 3;
+    empHrs+=getWorkingHrs(empCheck);
+}
+empWage=empHrs*WAGE_PER_HOUR;
+console.log("Total monthly wage: "+empWage);
