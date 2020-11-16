@@ -57,6 +57,7 @@ const MAX_HOURS_IN_A_MONTH=160;
 const MAX_NUMBER_OF_DAYS=20;
 let totalWorkHrs=0;
 let totalWorkingDays=0;
+let empDailyWageArray = new Array();
 while(totalWorkingDays<MAX_NUMBER_OF_DAYS&& totalWorkHrs<MAX_HOURS_IN_A_MONTH)
 {
     totalWorkingDays++;
@@ -67,6 +68,18 @@ while(totalWorkingDays<MAX_NUMBER_OF_DAYS&& totalWorkHrs<MAX_HOURS_IN_A_MONTH)
         empHrs=PART_TIME_HOURS;
     }
     totalWorkHrs+=empHrs;
+    //UC 6 refactor
+    empDailyWageArray.push(empHrs);
 }
-let totalEmpWage=totalWorkHrs*WAGE_PER_HOUR;
-console.log("UC 5\nTotal days worked: "+totalWorkingDays+"\nTotal work hours: "+totalWorkHrs+"\nTotal monthly wage: "+totalEmpWage);
+let totalEmpWage=calculateDailyWage(totalWorkHrs);
+console.log("Total days worked: "+totalWorkingDays+"\nTotal work hours: "+totalWorkHrs+"\nTotal monthly wage: "+totalEmpWage);
+
+//UC 6 : Store the daily wage along with the total wage
+for(let i=0;i<empDailyWageArray.length;i++)
+{
+    console.log("Emp wage for day: "+(i+1)+" is: "+empDailyWageArray[i]);
+}
+function calculateDailyWage(empHrs)
+{
+    return empHrs*WAGE_PER_HOUR;
+}
